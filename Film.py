@@ -14,6 +14,15 @@ pt = pickle.load(open('pt.pkl','rb'))
 books = pickle.load(open('books1.pkl','rb'))
 similarity_scores = pickle.load(open('similarity_scores.pkl','rb'))
 
+split_files = ['part_0.pkl', 'part_1.pkl', 'part_2.pkl', 'part_3.pkl', 'part_4.pkl', 'part_5.pkl', 'part_6.pkl', 'part_7.pkl']  # Add the names of your split files here
+
+# Combine split files
+combined_data = []
+for file_name in split_files:
+    with open(file_name, 'rb') as file:
+        chunk = pickle.load(file)
+        combined_data.extend(chunk)
+  
 def fetch_poster(movie_id):
     url = "https://api.themoviedb.org/3/movie/{}?api_key=8265bd1679663a7ea12ac168da84d2e8&language=en-US".format(movie_id)
     data = requests.get(url)
@@ -68,7 +77,8 @@ st.subheader(option)
 if option=="Movie Recommender":
     # st.header('Movie Recommender System')
     movies = pickle.load(open('movie_list.pkl','rb'))
-    similarity = pickle.load(open('similarity.pkl','rb'))
+    similarity = combined_data
+#     similarity = pickle.load(open('similarity.pkl','rb'))
     movie_list = movies['title'].values
     selected_movie = st.selectbox("Type or select a movie from the dropdown",movie_list)
     if st.button('Show Recommendation'):
