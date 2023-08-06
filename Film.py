@@ -70,6 +70,7 @@ def recommend2(book_name):
     return data
 
 st.title('Recommenders by PJ')
+st.markdown(""" #### A collaborative filtering based recommender model for providing recommendation of movies and books based on a user preference. """)
 activities=["Movie Recommender","Book Recommender"]
 option=st.sidebar.selectbox("Select Your Option",activities)
 st.subheader(option)
