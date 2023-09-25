@@ -69,13 +69,13 @@ def recommend2(book_name):
     
     return data
 
-st.title('Recommenders by PJ')
+st.title('ROZO')
 st.markdown(""" #### A collaborative filtering based recommender model for providing recommendation of movies and books based on a user preference. """)
-activities=["Movie Recommender","Book Recommender"]
+activities=["Movie Recommendation","Book Recommendation"]
 option=st.sidebar.selectbox("Select Your Option",activities)
 st.subheader(option)
 
-if option=="Movie Recommender":
+if option=="Movie Recommendation":
     # st.header('Movie Recommender System')
     movies = pickle.load(open('movie_list.pkl','rb'))
     similarity = combined_data
@@ -102,7 +102,7 @@ if option=="Movie Recommender":
             st.text(recommended_movie_names[4])
             st.image(recommended_movie_posters[4])
 
-elif option=="Book Recommender":
+elif option=="Book Recommendation":
     book_list = books['Book-Title'].values
     selected_book = st.selectbox("Type or select a book from the dropdown",book_list)
     if st.button('Show Recommendation'):
